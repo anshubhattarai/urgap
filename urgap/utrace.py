@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import copy
-import datetime
+import datetime as dt
 import json
 import logging
 import shutil
@@ -184,7 +184,7 @@ class UTrace:
     )
     def info(self) -> None:
         """Print runtime information for this UTrace instance to logging."""
-        time_str = datetime.datetime.now().astimezone().strftime("%H:%M:%S - %d.%m.%Y")
+        time_str = dt.datetime.now().astimezone().strftime("%H:%M:%S - %d.%m.%Y")
 
         log_message = ""
         log_message += f"\n.{'-' * 40}\n"
@@ -633,7 +633,7 @@ class UTrace:
 
     def set_start_time(self) -> None:
         """Set the start time stamp."""
-        self.start_time = datetime.datetime.now().astimezone()
+        self.start_time = dt.datetime.now().astimezone()
 
     def set_stop_time(self, skipped: bool = False, crashed: bool = False) -> None:
         """Set the stop time stamp.
@@ -648,7 +648,7 @@ class UTrace:
             self.duration_seconds = None
         else:
             self.duration_seconds = (
-                datetime.datetime.now().astimezone() - self.start_time
+                dt.datetime.now().astimezone() - self.start_time
             ).total_seconds()
 
     def get_parent_files(self) -> list:

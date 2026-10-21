@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import datetime
+import datetime as dt
 import logging
 
 from typing import TYPE_CHECKING, Any
@@ -128,7 +128,7 @@ class ExecutionHistory(Base):
 
     uunode_exe_id: Mapped[str] = mapped_column(index=True)
     uwid: Mapped[str] = mapped_column(index=True)
-    started_time: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    started_time: Mapped[dt] = mapped_column(DateTime(timezone=True))
     duration_seconds: Mapped[int | None] = mapped_column(nullable=True)
 
     user_dict: Mapped[UserDicts] = relationship(
