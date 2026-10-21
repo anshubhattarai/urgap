@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import datetime
+import datetime as dt
 import json
 import pathlib
 
@@ -19,9 +19,7 @@ class JSONEncoder(json.JSONEncoder):
 
     def default(
         self,
-        obj: (
-            datetime.datetime | set | urgap.UFile | pathlib.PosixPath | urgap.UFileList
-        ),
+        obj: (dt.datetime | set | urgap.UFile | pathlib.PosixPath | urgap.UFileList),
     ) -> dict:
         """Serialize additional urgap and built-in types.
 
@@ -31,7 +29,7 @@ class JSONEncoder(json.JSONEncoder):
         Returns:
             JSON-serializable dict or object.
         """
-        if isinstance(obj, datetime.datetime):
+        if isinstance(obj, dt.datetime):
             return {
                 "_type": "datetime",
                 "value": obj.isoformat(),
@@ -77,7 +75,7 @@ class JSONDecoder(json.JSONDecoder):
     def object_hook(
         self,
         obj: dict,
-    ) -> dict | datetime.datetime | set | pathlib.Path | urgap.UFile | urgap.UFileList:
+    ) -> dict | dt.datetime | set | pathlib.Path | urgap.UFile | urgap.UFileList:
         """Decode urgap-specific objects from dicts.
 
         Args:
@@ -90,7 +88,7 @@ class JSONDecoder(json.JSONDecoder):
             return obj
         match obj["_type"]:
             case "datetime":
-                return datetime.datetime.fromisoformat(obj["value"])
+                return dt.datetime.fromisoformat(obj["value"])
             case "set":
                 return set(obj["value"])
             case "Path":
