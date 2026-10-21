@@ -209,9 +209,3 @@ lines-between-types = 1
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')"
 ]
-
-[tool.uv]
-# Overrides only apache-beam pins down currently
-override-dependencies = [
-    "cryptography>=50.0.0",
-]
