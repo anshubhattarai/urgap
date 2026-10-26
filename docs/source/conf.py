@@ -53,6 +53,8 @@ extensions = [
 
 nbsphinx_execute = "never"
 
+autodoc_mock_imports = ["apache_beam"]
+
 
 def setup(app):
     import shutil

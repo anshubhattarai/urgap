@@ -1,4 +1,7 @@
-"""UHelper.beam module of urgap."""
+"""UHelper.beam module of urgap.
+
+apache-beam is not a urgap dependency, install it separately to use these helpers.
+"""
 
 import argparse
 import copy
@@ -9,9 +12,16 @@ from collections.abc import Generator
 from pathlib import Path
 from typing import ParamSpec
 
-import apache_beam as beam
+try:
+    import apache_beam as beam
 
-from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
+    from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
+except ImportError as e:
+    msg = (
+        "urgap.uhelpers.beam requires apache-beam, which urgap does not install. "
+        "Install it separately, e.g. `pip install apache-beam`."
+    )
+    raise ImportError(msg) from e
 from pyvis.network import Network
 
 import urgap
