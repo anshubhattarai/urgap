@@ -95,6 +95,13 @@ Using urgap in Prefect
 Using urgap in Apache Beam / GCP DataFlow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The helpers in :mod:`urgap.uhelpers.beam` need ``apache-beam``, which is not
+part of any urgap extra. Install it alongside urgap yourself:
+
+.. code-block:: bash
+
+   $ pip install urgap[cloud] apache-beam
+
 Using urgap in Nextflow
 ^^^^^^^^^^^^^^^^^^^^^^^
 
